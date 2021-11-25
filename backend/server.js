@@ -20,20 +20,21 @@ const app = express()
 
 
 app.get('/api/products/:id', (req, res)=> {
-    // console.log(`req-> ${req}`)
     const product = data.products.find( x=> x._id === req.params.id)
-    // console.log(`product-> ${product}`)
-    // debugger
     if(product) {
-        res.send(product)
-
-    // if(true) {
-    //     res.send(prod)
+        try {
+            res.send(product)
+        }
+        catch(err) {
+            // res.send({message: err.response && err.response.data.message ? err.response.data.message : err.message})
+            res.send({message: "product found, but failed to complete"})
+        }
     }
     else {
         res.status(404).send({message: "Product not found"})
     }
-    // res.send(prod)
+
+        
 })
 
 //note: homepage does not work without this one

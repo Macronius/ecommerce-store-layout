@@ -11,13 +11,13 @@ export default function ProductScreen(props) {
     const dispatch = useDispatch()
 
     const productId = props.match.params.id
-    console.log(`productId-> ${productId}`)
+    // console.log(`productId-> ${productId}`)
 
     const productDetails = useSelector( state=> state.productDetails)
     const {loading, error, product} = productDetails
-    console.log(`loading-> ${loading}`)
-    console.log(`error-> ${error}`)
-    console.log(`product-> ${product}`)
+    // console.log(`loading-> ${loading}`)
+    // console.log(`error-> ${error}`)
+    // console.log(`product-> ${product}`)
 
     useEffect(()=> {
         dispatch(detailsProduct(productId))

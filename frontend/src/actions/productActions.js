@@ -32,28 +32,29 @@ export const listProducts = ()=> async(dispatch)=> {
 
 
 export const detailsProduct = (productId)=> async(dispatch)=> {
-    console.log(`productId-> ${productId}`)
+    // console.log(`productId-> ${productId}`)
     dispatch({
         type: PRODUCT_DETAILS_REQUEST,
         payload: productId
     })
     try {
-        console.log("detailsProduct Action: begin to try")
+        // console.log("detailsProduct Action: begin to try")
         const {data} = await Axios.get(`api/product/${productId}`)
-        console.log(`try get api/product/productId-> ${data}`)
+        // console.log(`success: api returned data-> ${data}`)
+        // const {data} = await Axios.get("api/product/3")
         dispatch({ 
             type: PRODUCT_DETAILS_SUCCESS, 
             payload: data
         })
     }
-    catch(err) {
-        console.log(`err-> ${err}`)
+    catch(error) {
+        console.log(`error-> ${error}`)
         dispatch({ 
             type: PRODUCT_DETAILS_FAIL, 
             payload: 
-                err.response && err.response.data.message 
-                    ? err.response.data.message 
-                    : err.message
+                error.response && error.response.data.message 
+                    ? error.response.data.message 
+                    : error.message
         })
     }
 }
